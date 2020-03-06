@@ -29,9 +29,9 @@ app.use(
 
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static("client/build"));
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-    });
+    app.get(/^\/(?!api).*/, (req, res) => {
+      res.sendFile(path.join(__dirname, "./client/build/index.html"));
+    });    
 }
 
 // Get Routes
@@ -48,12 +48,12 @@ let wishlist = require("./server/routes/wishlist");
 //middlewares
 const verifyToken = require("./server/middlewares/auth.middleware").verifyToken;
 
-app.use("/auth", signup);
-app.use("/auth", login);
-app.use("/product", product);
-app.use("/categories", categories);
-app.use("/cart", verifyToken, cart);
-app.use("/affiliations", verifyToken, affiliaions);
-app.use("/orders", verifyToken, orders);
-app.use("/wishlist", verifyToken, wishlist);
-app.use("/profile", verifyToken, profile);
+app.use("/api/auth", signup);
+app.use("/api/auth", login);
+app.use("/api/product", product);
+app.use("/api/categories", categories);
+app.use("/api/cart", verifyToken, cart);
+app.use("/api/affiliations", verifyToken, affiliaions);
+app.use("/api/orders", verifyToken, orders);
+app.use("/api/wishlist", verifyToken, wishlist);
+app.use("/api/profile", verifyToken, profile);
