@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const path = require('path');
 
 require("dotenv").config();
 const PORT = process.env.PORT;
@@ -25,6 +26,10 @@ app.use(
     extended: false
   })
 );
+
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static("client/build"))
+}
 
 // Get Routes
 let product = require("./server/routes/products");
