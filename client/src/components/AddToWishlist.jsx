@@ -10,14 +10,14 @@ import { wishlistLoading } from "../store/loadingWishlist/actions/loadingWishlis
 import LinearDotsSpinner from "./LinearDotsSpinner";
 const AddToWishlist = props => {
   // wishlist is an array in props
-  // product_id is in props
+  // productis in props
   //props.onWishlist is boolean to differ weather its mounted on products or wishlistTile
-
   const dispatch = useDispatch();
   let index;
-  if (props.wishlist) {
+  if (props.wishlist && props.product) {
     props.wishlist.forEach((w, i) => {
-      if (w.product_id === props.product_id) {
+
+      if (w.product_id === props.product.product_id) {
         index = i;
       }
     });
@@ -33,9 +33,9 @@ const AddToWishlist = props => {
             className="btn wishlist-button w-100 h-100 rounded-0 py-3"
             onClick={e => {
               dispatch(
-                addToWishlist(props.product_id, props.wishlist, isLoggedIn)
+                addToWishlist(props.product, props.wishlist, isLoggedIn)
               );
-              dispatch(wishlistLoading());
+              dispatch(wishlistLoading(isLoggedIn));
             }}
           >
             <h6 className="m-0 p-0">
@@ -52,9 +52,9 @@ const AddToWishlist = props => {
               className="btn btn-warning w-100 h-100 rounded-0 py-3"
               onClick={e => {
                 dispatch(
-                  addToWishlist(props.product_id, props.wishlist, isLoggedIn)
+                  addToWishlist(props.product, props.wishlist, isLoggedIn)
                 );
-                dispatch(wishlistLoading());
+                dispatch(wishlistLoading(isLoggedIn));
               }}
             >
               <h6 className="m-0 p-0">
@@ -68,15 +68,19 @@ const AddToWishlist = props => {
           <>
             <button
               className={`btn btn-danger ${
-                props.onWishlist ? "" : "w-100 h-100 rounded-0"
+                props.onWishlist
+                  ? " bg-transparent text-danger border-0"
+                  : "w-100 h-100 rounded-0"
               } py-2 px-auto`}
               onClick={e => {
-                dispatch(removeFromWishlist(props.product_id, isLoggedIn));
-                dispatch(wishlistLoading());
+                dispatch(
+                  removeFromWishlist(props.product.product_id, isLoggedIn)
+                );
+                dispatch(wishlistLoading(isLoggedIn));
               }}
             >
               <h6 className="m-0 p-0">
-                <TiDelete style={{fontSize:"2rem", cursor: "pointer"}} />
+                <TiDelete style={{ fontSize: "2rem", cursor: "pointer" }} />
               </h6>
             </button>
           </>

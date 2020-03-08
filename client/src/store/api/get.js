@@ -94,7 +94,7 @@ export {
 };
 
 export const fetchWishlistItemsApi = (store, isLoggedIn) => {
-  let url = `${API_ORIGIN_URL}/wishlist/get`;
+  let url = `${API_ORIGIN_URL}/wishlist`;
   fetch(url, {
     method: "GET",
     headers: {

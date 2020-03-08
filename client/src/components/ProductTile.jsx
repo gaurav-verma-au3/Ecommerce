@@ -67,7 +67,7 @@ function ProductTile(props) {
             </div>
             <div className="col-6 p-0">
               <AddToWishlist
-                product_id={props.product.product_id}
+                product={props.product}
                 wishlist={props.wishlist}
               />
             </div>
