@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/api/auth";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import { fetchCartItems } from "../store/cart/actions/cart.actions";
 import { fetchWishListItems } from "../store/wishlist/actions/wishlist.actions";
