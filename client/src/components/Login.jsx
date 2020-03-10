@@ -50,13 +50,22 @@ const Login = props => {
                   type="password"
                   className="form-control"
                 />
-                {/* we need to implement this */}
+
                 <small className="text-muted">Forget Password ?</small>
               </div>
 
               <button type="submit" className="btn btn-primary">
                 Submit
               </button>
+
+              <p className="text-center text-muted mt-4">
+                Not Registered ?{"  "}
+                <Link className="text-primary" to="/signup">
+                  Sign Up
+                </Link>{"  "}
+                Now
+              </p>
+
               {isLoggedIn.error ? (
                 <p className="text-danger font-weight-bold mt-3 mb-0">
                   {isLoggedIn.message}
