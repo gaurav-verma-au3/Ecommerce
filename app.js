@@ -27,12 +27,12 @@ app.use(
   })
 );
 
-if(process.env.NODE_ENV === 'production'){
-    app.use(express.static("client/build"));
-    app.get(/^\/(?!api).*/, (req, res) => {
-      res.sendFile(path.join(__dirname, "./client/build/index.html"));
-    });    
-}
+// if(process.env.NODE_ENV === 'production'){
+//     app.use(express.static("client/build"));
+//     app.get(/^\/(?!api).*/, (req, res) => {
+//       res.sendFile(path.join(__dirname, "./client/build/index.html"));
+//     });    
+// }
 
 // Get Routes
 let product = require("./server/routes/products");
