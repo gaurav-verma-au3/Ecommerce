@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const path = require('path');
+const path = require("path");
 
 require("dotenv").config();
 const PORT = process.env.PORT;
@@ -14,7 +14,7 @@ db.authenticate()
   .then(() => {
     console.log("Connection to DB has been established successfully.");
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Unable to connect to the DB:", err);
   });
 
@@ -23,16 +23,16 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
-    extended: false
+    extended: false,
   })
 );
 
-// if(process.env.NODE_ENV === 'production'){
-//     app.use(express.static("client/build"));
-//     app.get(/^\/(?!api).*/, (req, res) => {
-//       res.sendFile(path.join(__dirname, "./client/build/index.html"));
-//     });    
-// }
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get(/^\/(?!api).*/, (req, res) => {
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  });
+}
 
 // Get Routes
 let product = require("./server/routes/products");
